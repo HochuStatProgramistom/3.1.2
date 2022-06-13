@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title>User</title>
+</head>
+<body>
+<h1>Страница пользователя</h1>
+
+<div th:switch="${user}">
+    <h2 th:case="null">No users found!</h2>
+    <div th:case="*">
+        <table  border="1">
+            <thead>
+            <tr>
+                <th>username</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="u : ${user}">
+                <td th:text="${u.username}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+<form th:action="@{/logout}" method="post">
+    <input type="submit" value="Logout" />
+</form>
+
+</body>
+</html>
