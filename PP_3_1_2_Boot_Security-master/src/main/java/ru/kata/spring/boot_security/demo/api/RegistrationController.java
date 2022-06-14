@@ -20,8 +20,6 @@ public class RegistrationController {
     @PostMapping("/registration")
     public String addUser(User user) {
         userService.savePerson(user);
-        String name = user.getUsername();
-        userService.addRoleToPerson(name, "ROLE_USER");
-        return "redirect:/user";
+        return "redirect:/login";
     }
 }

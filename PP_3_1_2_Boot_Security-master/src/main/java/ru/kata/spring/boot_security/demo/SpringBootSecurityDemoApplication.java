@@ -15,7 +15,6 @@ public class SpringBootSecurityDemoApplication {
         SpringApplication.run(SpringBootSecurityDemoApplication.class, args);
     }
 
-
     @Bean
     CommandLineRunner run(UserService personService) {
         return args -> {
