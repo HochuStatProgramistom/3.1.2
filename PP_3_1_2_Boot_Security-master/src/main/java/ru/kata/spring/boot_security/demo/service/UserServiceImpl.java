@@ -24,20 +24,11 @@ import java.util.Set;
 public class UserServiceImpl implements UserDetailsService, UserService {
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
-    private final BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder(10);
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User person = userRepository.findByUsername(username);
-        if (person == null) {
-            throw new UsernameNotFoundException("User not found in the database");
-        } else {
-        }
-        Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
-        person.getRoles().forEach(role ->
-                authorities.add(new SimpleGrantedAuthority(role.getName()))
-        );
-        return new org.springframework.security.core.userdetails.User(person.getUsername(), person.getPassword(), authorities);
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {     
+        return userRepository.findByUsername(username);
     }
 
     @Override
